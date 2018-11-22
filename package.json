@@ -1,15 +1,14 @@
 {
   "name": "ng2-smart-table-extended-demo",
-  "version": "1.3.5",
-  "description": "Angular Smart Table",
-  "author": "Akveo <contact@akveo.com>",
-  "homepage": "http://akveo.github.io/ng2-smart-table-extended/",
+  "version": "1.0.0",
+  "description": "Angular Smart Table Extended, forked from ng2-smart-table-demo@1.3.5 ",
+  "author": "WhiteDot <hello@whitedot.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akveo/ng2-smart-table-extended.git"
+    "url": "https://github.com/filipditrich/ng2-smart-table-extended.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/ng2-smart-table-extended/issues"
+    "url": "https://github.com/filipditrich/ng2-smart-table-extended/issues"
   },
   "license": "MIT",
   "scripts": {
