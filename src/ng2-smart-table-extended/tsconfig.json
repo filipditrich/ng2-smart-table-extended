@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": true,
-    "outDir": "../../dist/ng2-smart-table",
+    "outDir": "../../dist/ng2-smart-table-extended",
     "rootDir": ".",
     "sourceMap": true,
     "target": "es5",

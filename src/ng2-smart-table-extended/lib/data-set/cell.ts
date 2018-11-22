@@ -19,6 +19,10 @@ export class Cell {
     return this.row;
   }
 
+  getDataSet(): DataSet {
+    return this.dataSet;
+  }
+
   getValue(): any {
     const valid = this.column.getValuePrepareFunction() instanceof Function;
     const prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;

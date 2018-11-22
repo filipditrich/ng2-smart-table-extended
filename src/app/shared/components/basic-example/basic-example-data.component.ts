@@ -1,17 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TestComponent} from './test.component';
 
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <style>.test-class { color: red; }</style>
+    <ng2-smart-table-extended [settings]="settings" [source]="data"></ng2-smart-table-extended>
   `,
 })
 export class BasicExampleDataComponent {
 
+  test = 'test';
+
   settings = {
+    edit: {
+      editButtonContent: '<i>??? {{test}}</i>',
+      editClassFunction: row => {
+        return row.data.id === 4 ? 'test-class' : '';
+      },
+    },
     columns: {
       id: {
         title: 'ID',
+        editor: {
+          type: 'custom',
+          component: TestComponent,
+        },
       },
       name: {
         title: 'Full Name',

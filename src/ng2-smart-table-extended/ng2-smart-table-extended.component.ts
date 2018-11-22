@@ -7,11 +7,11 @@ import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
-  selector: 'ng2-smart-table',
-  styleUrls: ['./ng2-smart-table.component.scss'],
-  templateUrl: './ng2-smart-table.component.html',
+  selector: 'ng2-smart-table-extended',
+  styleUrls: ['./ng2-smart-table-extended.component.scss'],
+  templateUrl: './ng2-smart-table-extended.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableExtendedComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -59,6 +59,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       saveButtonContent: 'Update',
       cancelButtonContent: 'Cancel',
       confirmSave: false,
+      editClassFunction: () => "",
     },
     add: {
       inputClass: '',
@@ -70,6 +71,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     delete: {
       deleteButtonContent: 'Delete',
       confirmDelete: false,
+      deleteClassFunction: () => "",
     },
     attr: {
       id: '',

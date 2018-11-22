@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from '../../../../ng2-smart-table';
+import { LocalDataSource } from '../../../../ng2-smart-table-extended';
 
 @Component({
   selector: 'advance-example-comfirm',
   template: `
-    <ng2-smart-table
+    <ng2-smart-table-extended
       [settings]="settings"
       [source]="source"
       (deleteConfirm)="onDeleteConfirm($event)"
       (editConfirm)="onSaveConfirm($event)"
-      (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+      (createConfirm)="onCreateConfirm($event)"></ng2-smart-table-extended>
   `,
 })
 export class AdvancedExampleConfirmComponent {

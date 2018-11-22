@@ -1,1 +1,1 @@
-import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { Ng2SmartTableExtendedModule, LocalDataSource } from 'ng2-smart-table-extended';

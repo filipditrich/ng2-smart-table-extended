@@ -24,7 +24,7 @@ const gulpRollup = require('gulp-better-rollup');
 const gulpMinifyHtml = require('gulp-htmlmin');
 const gulpIf = require('gulp-if');
 
-/** Path to tsconfig file for the ng2-smart-table. */
+/** Path to tsconfig file for the ng2-smart-table-extended. */
 const tsconfigPath = path.join(TABLE_DIR, 'tsconfig.json');
 
 /** Asset files to be added to the components output. */
@@ -39,7 +39,7 @@ const assetFiles = [
 /** Builds components to UMD bundle. */
 task('build:table',  ()  => task(':build:table:bundle:umd'));
 
-/** Builds components for ng2-smart-table releases */
+/** Builds components for ng2-smart-table-extended releases */
 task(':build:table:release', sequenceTask(
   ':build:table:bundle:esm',
   ':build:table:bundle:umd',
@@ -134,7 +134,7 @@ const ROLLUP_GLOBALS = {
   'lodash': 'lodash',
 };
 
-/** Creates a rollup bundles of the ng2-smart-table components.*/
+/** Creates a rollup bundles of the ng2-smart-table-extended components.*/
 function createRollupBundle(format: string, outFile: string) {
   const rollupOptions = {
     context: 'this',
@@ -144,7 +144,7 @@ function createRollupBundle(format: string, outFile: string) {
   const rollupGenerateOptions = {
     // Keep the moduleId empty because we don't want to force developers to a specific moduleId.
     moduleId: '',
-    moduleName: 'ng2-smart-table',
+    moduleName: 'ng2-smart-table-extended',
     banner: TABLE_LICENSE_BANNER,
     format: format,
     dest: outFile,

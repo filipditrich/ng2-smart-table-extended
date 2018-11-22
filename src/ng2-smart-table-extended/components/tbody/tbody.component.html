@@ -19,7 +19,7 @@
     <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
   </td>
   <td *ngFor="let cell of row.cells">
-    <ng2-smart-table-cell [cell]="cell"
+    <ng2-smart-table-extended-cell [cell]="cell"
                           [grid]="grid"
                           [row]="row"
                           [isNew]="false"
@@ -27,7 +27,7 @@
                           [editConfirm]="editConfirm"
                           [inputClass]="editInputClass"
                           [isInEditing]="row.isInEditing">
-    </ng2-smart-table-cell>
+    </ng2-smart-table-extended-cell>
   </td>
 
   <td *ngIf="row.isInEditing && showActionColumnRight"  class="ng2-smart-actions">

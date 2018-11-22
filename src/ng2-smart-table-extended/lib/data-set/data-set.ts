@@ -23,6 +23,10 @@ export class DataSet {
     this.createRows();
   }
 
+  getData() {
+    return this.data;
+  }
+
   getColumns(): Array<Column> {
     return this.columns;
   }
