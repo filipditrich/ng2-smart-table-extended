@@ -49,8 +49,9 @@ Thumbs.db
 .travis.yml
 .editorconfig
 angular.json
-guplfile.js
+gulpfile.js
 karma.conf.js
-protactor.conf.js
+protractor.conf.js
 tsconfig.json
 tslint.json
+CHANGELOG.md
