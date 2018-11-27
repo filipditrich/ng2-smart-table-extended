@@ -18,7 +18,7 @@ var TbodyCustomComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'ng2-st-tbody-custom',
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    template: "\n      <a *ngFor=\"let action of grid.getSetting('actions.custom')\" href=\"#\"\n         class=\"ng2-smart-action ng2-smart-action-custom-custom\" \n         [innerHTML]=\"action.title\"\n         (click)=\"onCustom(action, $event)\"></a>\n        "
+                    template: "\n      <a *ngFor=\"let action of this.grid.getSetting('actions.custom')\" href=\"#\"\n         class=\"ng2-smart-action ng2-smart-action-custom-custom {{ action.classFunction(row) }}\" \n         [innerHTML]=\"action.content\"\n         (click)=\"onCustom(action, $event)\"></a>\n        "
                 },] },
     ];
     /** @nocollapse */

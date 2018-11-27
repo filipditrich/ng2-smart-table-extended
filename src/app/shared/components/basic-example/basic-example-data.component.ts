@@ -4,7 +4,7 @@ import {TestComponent} from './test.component';
 @Component({
   selector: 'basic-example-data',
   template: `
-    <style>.test-class { color: red; }</style>
+    <style>/host/ ::ng-deep .test-class { color: red; }</style>
     <ng2-smart-table-extended [settings]="settings" [source]="data"></ng2-smart-table-extended>
   `,
 })
@@ -18,6 +18,15 @@ export class BasicExampleDataComponent {
       editClassFunction: row => {
         return row.data.id === 4 ? 'test-class' : '';
       },
+    },
+    actions: {
+      custom: [
+        {
+          name: 'kastm',
+          content: '<h1>custom?</h1>',
+          classFunction: row => row.data.id === 4 ? 'test-class' : '',
+        },
+      ],
     },
     columns: {
       id: {

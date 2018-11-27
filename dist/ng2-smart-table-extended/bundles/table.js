@@ -2123,9 +2123,9 @@ TbodyCustomComponent = __decorate$26([
         selector: 'ng2-st-tbody-custom',
         changeDetection: ChangeDetectionStrategy.OnPush,
         template: `
-      <a *ngFor="let action of grid.getSetting('actions.custom')" href="#"
-         class="ng2-smart-action ng2-smart-action-custom-custom" 
-         [innerHTML]="action.title"
+      <a *ngFor="let action of this.grid.getSetting('actions.custom')" href="#"
+         class="ng2-smart-action ng2-smart-action-custom-custom {{ action.classFunction(row) }}" 
+         [innerHTML]="action.content"
          (click)="onCustom(action, $event)"></a>
         `
     })
