@@ -10,6 +10,7 @@ export declare class TbodyEditDeleteComponent implements OnChanges {
     editConfirm: EventEmitter<any>;
     edit: EventEmitter<any>;
     delete: EventEmitter<any>;
+    custom: EventEmitter<any>;
     editRowSelect: EventEmitter<any>;
     isActionEdit: boolean;
     isActionDelete: boolean;

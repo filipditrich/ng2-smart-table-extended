@@ -1617,7 +1617,7 @@ var Ng2SmartTableTbodyComponent = /** @class */ (function () {
         { type: core.Component, args: [{
                     selector: '[ng2-st-tbody]',
                     styles: [":host .ng2-smart-row.selected{background:rgba(0,0,0,.05)}:host .ng2-smart-row .ng2-smart-actions.ng2-smart-action-multiple-select{text-align:center} /*# sourceMappingURL=tbody.component.css.map */ "],
-                    template: "<tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\" class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\"><td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\" (click)=\"multipleSelectRow.emit(row)\"><input type=\"checkbox\" class=\"form-control\" [ngModel]=\"row.isSelected\"></td><td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-custom><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-edit-delete></td><td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngFor=\"let cell of row.cells\"><ng2-smart-table-extended-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\" [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\"></ng2-smart-table-extended-cell></td><td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-custom><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\" [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (editRowSelect)=\"editRowSelect.emit($event)\"></ng2-st-tbody-edit-delete></td></tr><tr *ngIf=\"grid.getRows().length == 0\"><td [attr.colspan]=\"grid.getColumns().length + (isActionAdd || isActionEdit || isActionDelete)\">{{ noDataMessage }}</td></tr>",
+                    template: "<tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\" class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\"><td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\" (click)=\"multipleSelectRow.emit(row)\"><input type=\"checkbox\" class=\"form-control\" [ngModel]=\"row.isSelected\"></td><td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-edit-delete></td><td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngFor=\"let cell of row.cells\"><ng2-smart-table-extended-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\" [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\"></ng2-smart-table-extended-cell></td><td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\" [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\"></ng2-st-tbody-edit-delete></td></tr><tr *ngIf=\"grid.getRows().length == 0\"><td [attr.colspan]=\"grid.getColumns().length + (isActionAdd || isActionEdit || isActionDelete)\">{{ noDataMessage }}</td></tr>",
                 },] },
     ];
     /** @nocollapse */
@@ -1677,6 +1677,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
     function TbodyEditDeleteComponent() {
         this.edit = new core.EventEmitter();
         this.delete = new core.EventEmitter();
+        this.custom = new core.EventEmitter();
         this.editRowSelect = new core.EventEmitter();
     }
     TbodyEditDeleteComponent.prototype.onEdit = function (event) {
@@ -1718,7 +1719,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
         { type: core.Component, args: [{
                     selector: 'ng2-st-tbody-edit-delete',
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <a href=\"#\" *ngIf=\"isActionEdit\" class=\"ng2-smart-action ng2-smart-action-edit-edit {{ editRowClassFunction(row) }}\"\n        [innerHTML]=\"editRowButtonContent\" (click)=\"onEdit($event)\"></a>\n    <a href=\"#\" *ngIf=\"isActionDelete\" class=\"ng2-smart-action ng2-smart-action-delete-delete {{ deleteRowClassFunction(row) }}\"\n        [innerHTML]=\"deleteRowButtonContent\" (click)=\"onDelete($event)\"></a>\n  ",
+                    template: "\n    <a href=\"#\" *ngIf=\"isActionEdit\"\n       class=\"ng2-smart-action ng2-smart-action-edit-edit {{ editRowClassFunction(row) }}\"\n       [innerHTML]=\"editRowButtonContent\"\n       (click)=\"onEdit($event)\"></a>\n    <a href=\"#\" *ngIf=\"isActionDelete\"\n       class=\"ng2-smart-action ng2-smart-action-delete-delete {{ deleteRowClassFunction(row) }}\"\n       [innerHTML]=\"deleteRowButtonContent\"\n       (click)=\"onDelete($event)\"></a>\n    <ng2-st-tbody-custom\n      [grid]=\"grid\"\n      (custom)=\"custom.emit($event)\"\n      [row]=\"row\"\n      [source]=\"source\">\n    </ng2-st-tbody-custom>\n  ",
                 },] },
     ];
     /** @nocollapse */
@@ -1730,6 +1731,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
         "editConfirm": [{ type: core.Input },],
         "edit": [{ type: core.Output },],
         "delete": [{ type: core.Output },],
+        "custom": [{ type: core.Output },],
         "editRowSelect": [{ type: core.Output },],
     };
     return TbodyEditDeleteComponent;
@@ -1745,14 +1747,14 @@ var TbodyCustomComponent = /** @class */ (function () {
         this.custom.emit({
             action: action.name,
             data: this.row.getData(),
-            source: this.source
+            source: this.source,
         });
     };
     TbodyCustomComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ng2-st-tbody-custom',
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    template: "\n      <a *ngFor=\"let action of this.grid.getSetting('actions.custom')\" href=\"#\"\n         class=\"ng2-smart-action ng2-smart-action-custom-custom {{ action.classFunction(row) }}\" \n         [innerHTML]=\"action.content\"\n         (click)=\"onCustom(action, $event)\"></a>\n        "
+                    template: "\n      <a *ngFor=\"let action of this.grid.getSetting('actions.custom')\" href=\"#\"\n         class=\"ng2-smart-action ng2-smart-action-custom-custom {{ action.classFunction(row) }}\" \n         [innerHTML]=\"action.content\"\n         (click)=\"onCustom(action, $event)\"></a>\n        ",
                 },] },
     ];
     /** @nocollapse */

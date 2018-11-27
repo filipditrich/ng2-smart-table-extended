@@ -6,6 +6,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
     function TbodyEditDeleteComponent() {
         this.edit = new EventEmitter();
         this.delete = new EventEmitter();
+        this.custom = new EventEmitter();
         this.editRowSelect = new EventEmitter();
     }
     TbodyEditDeleteComponent.prototype.onEdit = function (event) {
@@ -47,7 +48,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'ng2-st-tbody-edit-delete',
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    template: "\n    <a href=\"#\" *ngIf=\"isActionEdit\" class=\"ng2-smart-action ng2-smart-action-edit-edit {{ editRowClassFunction(row) }}\"\n        [innerHTML]=\"editRowButtonContent\" (click)=\"onEdit($event)\"></a>\n    <a href=\"#\" *ngIf=\"isActionDelete\" class=\"ng2-smart-action ng2-smart-action-delete-delete {{ deleteRowClassFunction(row) }}\"\n        [innerHTML]=\"deleteRowButtonContent\" (click)=\"onDelete($event)\"></a>\n  ",
+                    template: "\n    <a href=\"#\" *ngIf=\"isActionEdit\"\n       class=\"ng2-smart-action ng2-smart-action-edit-edit {{ editRowClassFunction(row) }}\"\n       [innerHTML]=\"editRowButtonContent\"\n       (click)=\"onEdit($event)\"></a>\n    <a href=\"#\" *ngIf=\"isActionDelete\"\n       class=\"ng2-smart-action ng2-smart-action-delete-delete {{ deleteRowClassFunction(row) }}\"\n       [innerHTML]=\"deleteRowButtonContent\"\n       (click)=\"onDelete($event)\"></a>\n    <ng2-st-tbody-custom\n      [grid]=\"grid\"\n      (custom)=\"custom.emit($event)\"\n      [row]=\"row\"\n      [source]=\"source\">\n    </ng2-st-tbody-custom>\n  ",
                 },] },
     ];
     /** @nocollapse */
@@ -59,6 +60,7 @@ var TbodyEditDeleteComponent = /** @class */ (function () {
         "editConfirm": [{ type: Input },],
         "edit": [{ type: Output },],
         "delete": [{ type: Output },],
+        "custom": [{ type: Output },],
         "editRowSelect": [{ type: Output },],
     };
     return TbodyEditDeleteComponent;
