@@ -1,8 +1,8 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, OnChanges } from '@angular/core';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
-export declare class Ng2SmartTableTbodyComponent {
+export declare class Ng2SmartTableTbodyComponent implements OnChanges {
     grid: Grid;
     source: DataSource;
     deleteConfirm: EventEmitter<any>;

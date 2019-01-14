@@ -10,7 +10,7 @@ import { CompleterService, Ng2CompleterModule } from 'ng2-completer';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
-import { ContextMenuComponent, ContextMenuModule } from 'ngx-contextmenu';
+import { ContextMenuComponent, ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
 import { HttpParams } from '@angular/common/http';
 
 /**
@@ -3278,6 +3278,9 @@ Ng2SmartTableExtendedModule = __decorate$40([
         ],
         exports: [
             Ng2SmartTableExtendedComponent,
+        ],
+        providers: [
+            ContextMenuService,
         ],
     })
 ], Ng2SmartTableExtendedModule);

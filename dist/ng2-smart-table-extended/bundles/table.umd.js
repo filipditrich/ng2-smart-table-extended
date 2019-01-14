@@ -2692,6 +2692,9 @@ var Ng2SmartTableExtendedModule = /** @class */ (function () {
                     exports: [
                         Ng2SmartTableExtendedComponent,
                     ],
+                    providers: [
+                        ngxContextmenu.ContextMenuService,
+                    ],
                 },] },
     ];
     return Ng2SmartTableExtendedModule;
