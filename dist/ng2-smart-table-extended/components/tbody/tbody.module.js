@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ContextMenuModule } from 'ngx-contextmenu';
 import { CellModule } from '../cell/cell.module';
 import { Ng2SmartTableTbodyComponent } from './tbody.component';
 import { TbodyCreateCancelComponent } from './cells/create-cancel.component';
@@ -10,7 +11,7 @@ var TBODY_COMPONENTS = [
     TbodyCreateCancelComponent,
     TbodyEditDeleteComponent,
     TbodyCustomComponent,
-    Ng2SmartTableTbodyComponent
+    Ng2SmartTableTbodyComponent,
 ];
 var TBodyModule = /** @class */ (function () {
     function TBodyModule() {
@@ -21,6 +22,7 @@ var TBodyModule = /** @class */ (function () {
                         CommonModule,
                         FormsModule,
                         CellModule,
+                        ContextMenuModule,
                     ],
                     declarations: TBODY_COMPONENTS.slice(),
                     exports: TBODY_COMPONENTS.slice(),

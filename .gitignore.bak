@@ -40,18 +40,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# Everything else
-/e2e
-/scripts
-/src
-/tools
-.travis.yml
-.editorconfig
-angular.json
-gulpfile.js
-karma.conf.js
-protractor.conf.js
-tsconfig.json
-tslint.json
-CHANGELOG.md

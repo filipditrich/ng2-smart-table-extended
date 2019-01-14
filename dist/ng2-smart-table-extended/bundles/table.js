@@ -10,6 +10,7 @@ import { CompleterService, Ng2CompleterModule } from 'ng2-completer';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
+import { ContextMenuComponent, ContextMenuModule } from 'ngx-contextmenu';
 import { HttpParams } from '@angular/common/http';
 
 /**
@@ -1864,6 +1865,12 @@ let Ng2SmartTableTbodyComponent = class Ng2SmartTableTbodyComponent {
         this.isActionEdit = this.grid.getSetting('actions.edit');
         this.isActionDelete = this.grid.getSetting('actions.delete');
         this.noDataMessage = this.grid.getSetting('noDataMessage');
+        this.isContext = this.grid.getSetting('contextMenu.show');
+        this.contextItems = this.grid.getSetting('contextMenu.items');
+    }
+    onContextMenu(row) {
+        this.currentRow = row;
+        this.userSelectRow.emit(row);
     }
 };
 __decorate$23([
@@ -1926,11 +1933,15 @@ __decorate$23([
     Output(),
     __metadata$20("design:type", Object)
 ], Ng2SmartTableTbodyComponent.prototype, "rowHover", void 0);
+__decorate$23([
+    ViewChild(ContextMenuComponent),
+    __metadata$20("design:type", ContextMenuComponent)
+], Ng2SmartTableTbodyComponent.prototype, "basicMenu", void 0);
 Ng2SmartTableTbodyComponent = __decorate$23([
     Component({
         selector: '[ng2-st-tbody]',
         styles: [":host .ng2-smart-row.selected{background:rgba(0,0,0,.05)}:host .ng2-smart-row .ng2-smart-actions.ng2-smart-action-multiple-select{text-align:center} /*# sourceMappingURL=tbody.component.css.map */ "],
-        template: "<tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\" class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\"><td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\" (click)=\"multipleSelectRow.emit(row)\"><input type=\"checkbox\" class=\"form-control\" [ngModel]=\"row.isSelected\"></td><td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-edit-delete></td><td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngFor=\"let cell of row.cells\"><ng2-smart-table-extended-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\" [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\"></ng2-smart-table-extended-cell></td><td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\" [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\"></ng2-st-tbody-edit-delete></td></tr><tr *ngIf=\"grid.getRows().length == 0\"><td [attr.colspan]=\"grid.getColumns().length + (isActionAdd || isActionEdit || isActionDelete)\">{{ noDataMessage }}</td></tr>",
+        template: "<tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\" (contextmenu)=\"onContextMenu(row)\" class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\" [contextMenu]=\"basicMenu\"><td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\" (click)=\"multipleSelectRow.emit(row)\"><input type=\"checkbox\" class=\"form-control\" [ngModel]=\"row.isSelected\"></td><td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-edit-delete></td><td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngFor=\"let cell of row.cells\"><ng2-smart-table-extended-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\" [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\"></ng2-smart-table-extended-cell></td><td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel></td><td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\"><ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\" [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (custom)=\"custom.emit($event)\" (editRowSelect)=\"editRowSelect.emit($event)\"></ng2-st-tbody-edit-delete></td></tr><tr *ngIf=\"grid.getRows().length == 0\"><td [attr.colspan]=\"grid.getColumns().length + (isActionAdd || isActionEdit || isActionDelete)\">{{ noDataMessage }}</td></tr><context-menu [disabled]=\"!isContext\"><div *ngFor=\"let item of contextItems; let i = index\"><ng-template contextMenuItem (execute)=\"item.action(currentRow)\"><span *ngIf=\"item.type === 'string' || !item.type\" class=\"{{ item.classes }}\">{{ item.value }}</span><div *ngIf=\"item.type === 'html'\" [innerHTML]=\"item.value\"></div></ng-template><div *ngIf=\"(i + 1) < contextItems.length\"><ng-template contextMenuItem divider=\"true\"></ng-template></div></div></context-menu>",
     })
 ], Ng2SmartTableTbodyComponent);
 
@@ -2156,7 +2167,7 @@ const TBODY_COMPONENTS = [
     TbodyCreateCancelComponent,
     TbodyEditDeleteComponent,
     TbodyCustomComponent,
-    Ng2SmartTableTbodyComponent
+    Ng2SmartTableTbodyComponent,
 ];
 let TBodyModule = class TBodyModule {
 };
@@ -2166,6 +2177,7 @@ TBodyModule = __decorate$27([
             CommonModule,
             FormsModule,
             CellModule,
+            ContextMenuModule,
         ],
         declarations: [
             ...TBODY_COMPONENTS,
@@ -3068,6 +3080,10 @@ let Ng2SmartTableExtendedComponent = class Ng2SmartTableExtendedComponent {
             },
             noDataMessage: 'No data found',
             columns: {},
+            contextMenu: {
+                show: false,
+                items: [],
+            },
             pager: {
                 display: true,
                 perPage: 10,
@@ -3255,6 +3271,7 @@ Ng2SmartTableExtendedModule = __decorate$40([
             PagerModule,
             TBodyModule,
             THeadModule,
+            ContextMenuModule,
         ],
         declarations: [
             Ng2SmartTableExtendedComponent,

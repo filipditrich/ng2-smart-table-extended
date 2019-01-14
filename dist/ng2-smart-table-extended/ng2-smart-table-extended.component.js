@@ -60,6 +60,10 @@ var Ng2SmartTableExtendedComponent = /** @class */ (function () {
             },
             noDataMessage: 'No data found',
             columns: {},
+            contextMenu: {
+                show: false,
+                items: [],
+            },
             pager: {
                 display: true,
                 perPage: 10,

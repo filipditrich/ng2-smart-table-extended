@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContextMenuModule } from 'ngx-contextmenu';
 import { CellModule } from './components/cell/cell.module';
 import { FilterModule } from './components/filter/filter.module';
 import { PagerModule } from './components/pager/pager.module';
@@ -21,6 +22,7 @@ var Ng2SmartTableExtendedModule = /** @class */ (function () {
                         PagerModule,
                         TBodyModule,
                         THeadModule,
+                        ContextMenuModule,
                     ],
                     declarations: [
                         Ng2SmartTableExtendedComponent,

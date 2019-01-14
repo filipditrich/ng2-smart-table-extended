@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
 export declare class Ng2SmartTableTbodyComponent {
@@ -26,5 +27,10 @@ export declare class Ng2SmartTableTbodyComponent {
     isActionEdit: boolean;
     isActionDelete: boolean;
     noDataMessage: boolean;
+    isContext: boolean;
+    contextItems: any[];
+    currentRow: any;
+    basicMenu: ContextMenuComponent;
     ngOnChanges(): void;
+    onContextMenu(row: any): void;
 }

@@ -7,8 +7,7 @@
   "typings": "./index.d.ts",
   "author": "WhiteDot",
   "license": "MIT",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+http://github.com/filipditrich/ng2-smart-table-extended-dist.git"
@@ -20,7 +19,8 @@
     "akveo"
   ],
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "ngx-contextmenu": "^5.1.1"
   },
   "peerDependencies": {
     "ng2-completer": "^2.0.8",
