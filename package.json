@@ -24,7 +24,7 @@
     "build:ci": "npm run build:prod && npm run build:prod:aot && npm run build:release",
     "build:ghpages": "npm run build:prod:aot -- --base-href \"https://akveo.github.io/ng2-smart-table-extended/\" && ngh",
     "build:release": "npm run clean:dist && gulp build:release",
-    "push:release": "mv .gitignore .gitignore.bak && mv .gitignore.release .gitignore && git rm -r --cached . && git add . && git commit -m 'release' && git push && mv .gitignore .gitignore.release && mv .gitignore.bak .gitignore",
+    "push:release": "mv .gitignore .gitignore.bak && mv .gitignore.release .gitignore && git rm -r --cached . && git add . && git commit -m 'release' && git push origin master && mv .gitignore .gitignore.release && mv .gitignore.bak .gitignore",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",
